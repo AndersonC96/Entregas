@@ -2,17 +2,17 @@
     // Inicializa a sessão para controle de login e autenticação
     session_start();
     // Inclui a configuração do banco de dados e funções auxiliares
-    require_once '../config/db.php';
-    require_once '../src/helpers/AuthHelper.php';
+    require_once './config/db.php';
+    require_once './src/helpers/AuthHelper.php';
     // Obtém a rota da URL, ou define como 'home' se nenhuma rota for passada
     $rota = $_GET['rota'] ?? 'home';
     // Definição das rotas e os respectivos arquivos que elas carregam
     $rotas = [
-        'login' => '../src/controllers/LoginController.php',                // Tela de login
-        'cadastro-usuario' => '../src/controllers/CadastroUsuarioController.php',  // Cadastro de usuário
-        'cadastro-entrega' => '../src/controllers/CadastroEntregaController.php',  // Cadastro de entrega
-        'relatorio' => '../src/controllers/RelatorioController.php',        // Relatório de entregas
-        'home' => '../views/dashboard.php'                                  // Página inicial/dashboard
+        'login' => './src/controllers/LoginController.php',                // Tela de login
+        'cadastro-usuario' => './src/controllers/CadastroUsuarioController.php',  // Cadastro de usuário
+        'cadastro-entrega' => './src/controllers/CadastroEntregaController.php',  // Cadastro de entrega
+        'relatorio' => './src/controllers/RelatorioController.php',        // Relatório de entregas
+        'home' => './views/dashboard.php'                                  // Página inicial/dashboard
     ];
     // Verifica se a rota existe no array de rotas
     if (array_key_exists($rota, $rotas)) {
