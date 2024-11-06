@@ -12,7 +12,7 @@
         'cadastro-usuario' => './src/controllers/CadastroUsuarioController.php',  // Cadastro de usuário
         'cadastro-entrega' => './src/controllers/CadastroEntregaController.php',  // Cadastro de entrega
         'relatorio' => './src/controllers/RelatorioController.php',        // Relatório de entregas
-        'home' => './views/dashboard.php'                                  // Página inicial/dashboard
+        'home' => './src/views/dashboard.php'                                  // Página inicial/dashboard
     ];
     // Verifica se a rota existe no array de rotas
     if (array_key_exists($rota, $rotas)) {
