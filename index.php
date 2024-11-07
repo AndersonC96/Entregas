@@ -9,7 +9,7 @@
         $user = $stmt->fetch();
         if ($user) {
             $_SESSION['user'] = $user;
-            header('Location: reqs/view_reqs.php');
+            header('Location: dashboard.php');
             exit;
         } else {
             $error = "Nome de usuário ou senha inválidos.";
