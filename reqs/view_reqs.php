@@ -10,6 +10,7 @@
     $stmt = $pdo->query("SELECT * FROM requisicoes ORDER BY data_hora DESC");
     $requisicoes = $stmt->fetchAll();
     include '../includes/header.php';
+    include '../includes/navbar.php';
 ?>
 <h2>Requisições Registradas</h2>
 <table class="table table-striped">
