@@ -31,6 +31,7 @@
         }
     }
     include '../includes/header.php';
+    include '../includes/navbar.php';
 ?>
 <h2>Cadastro de Requisição</h2>
 <?php if (isset($error)) echo "<p class='text-danger'>$error</p>"; ?>
