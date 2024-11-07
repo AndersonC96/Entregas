@@ -20,10 +20,15 @@
                 text-align: center;
             }
             .form-control {
-                background-color: #1a1a1a;
+                background-color: #3a3a3a;
+                /* Cinza mais claro para melhor legibilidade */
                 color: white;
                 border: none;
                 border-radius: 5px;
+            }
+            .form-control::placeholder {
+                color: #b0b0b0;
+                /* Cinza mais claro para o texto placeholder */
             }
             .form-control:focus {
                 box-shadow: none;
