@@ -27,6 +27,7 @@
         }
     }
     include '../includes/header.php';
+    include '../includes/navbar.php';
 ?>
 <h2>Criar Novo Usuário</h2>
 <form method="POST" action="">
