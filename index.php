@@ -15,19 +15,22 @@
             $error = "Nome de usuário ou senha inválidos.";
         }
     }
-    include 'includes/header.php';
+    include 'includes/header.php'; // Inclui o cabeçalho
 ?>
-<h2>Login</h2>
-<form method="POST" action="">
-    <div class="mb-3">
-        <label for="username" class="form-label">Nome de usuário</label>
-        <input type="text" class="form-control" id="username" name="username" required>
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="login-container">
+        <h3 style="font-family: Arial, sans-serif; color: #009688;">SIMPLE PHARMA</h3>
+        <p style="font-size: 12px; color: #6c757d;">MANIPULAÇÃO</p>
+        <form method="POST" action="">
+            <div class="mb-3">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Usuário" required>
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
+            </div>
+            <button type="submit" class="btn btn-custom">Entrar</button>
+            <?php if (isset($error)) echo "<p class='text-danger'>$error</p>"; ?>
+        </form>
     </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Senha</label>
-        <input type="password" class="form-control" id="password" name="password" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Entrar</button>
-    <?php if (isset($error)) echo "<p class='text-danger'>$error</p>"; ?>
-</form>
-<?php include 'includes/footer.php'; ?>
+</div>
+<?php include 'includes/footer.php'; // Inclui o rodapé?>
