@@ -42,15 +42,6 @@
         <div class="col">
             <div class="card h-100">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Remover Usuários</h5>
-                    <p class="card-text">Remover usuários do sistema.</p>
-                    <a href="admin/delete_user.php" class="btn btn-custom-card">Acessar</a>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100">
-                <div class="card-body text-center">
                     <h5 class="card-title">Visualizar Requisições</h5>
                     <p class="card-text">Acesse todas as requisições registradas.</p>
                     <a href="reqs/view_reqs.php" class="btn btn-custom-card">Acessar</a>
@@ -73,6 +64,15 @@
                     <h5 class="card-title">Visualizar Usuários</h5>
                     <p class="card-text">Visualizar todos usuários do sistema.</p>
                     <a href="admin/view_users.php" class="btn btn-custom-card">Acessar</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Remover Usuários</h5>
+                    <p class="card-text">Remover usuários do sistema.</p>
+                    <a href="admin/delete_user.php" class="btn btn-custom-card">Acessar</a>
                 </div>
             </div>
         </div>
