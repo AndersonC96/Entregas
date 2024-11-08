@@ -1,66 +1,57 @@
 <?php
-session_start();
-include '../includes/db.php';
-// Verifica se o usuário está logado
-if (!isset($_SESSION['user'])) {
-    header('Location: ../index.php');
-    exit;
-}
-$stmt = $pdo->query("SELECT * FROM requisicoes ORDER BY data_hora DESC");
-$requisicoes = $stmt->fetchAll();
-include '../includes/header.php';
-include '../includes/navbar.php';
+    session_start();
+    include '../includes/db.php';
+    // Verifica se o usuário está logado
+    if (!isset($_SESSION['user'])) {
+        header('Location: ../index.php');
+        exit;
+    }
+    $stmt = $pdo->query("SELECT * FROM requisicoes ORDER BY data_hora DESC");
+    $requisicoes = $stmt->fetchAll();
+    include '../includes/header.php';
+    include '../includes/navbar.php';
 ?>
 <div class="container mt-4">
     <h2 class="text-center mb-4" style="font-weight: bold; color: #333;">Requisições Registradas</h2>
     <div class="table-responsive">
-        <table class="table table-hover align-middle table-bordered" style="border-radius: 8px; overflow: hidden; background-color: #f8f9fa;">
-            <thead style="background-color: #52b1a9; color: white;">
+        <table class="table table-hover align-middle table-bordered custom-table" style="border-radius: 8px; overflow: hidden; background-color: #f8f9fa;">
+            <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Req.</th>
-                    <th>Foto</th>
-                    <th>Data e Hora</th>
-                    <th>Entregador</th>
+                    <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">ID</th>
+                    <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Requisição</th>
+                    <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Foto</th>
+                    <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Data e Hora</th>
+                    <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Entregador</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($requisicoes as $req): ?>
                     <tr>
-                        <td><?= htmlspecialchars($req['id']) ?></td>
-                        <td><?= htmlspecialchars($req['numero']) ?></td>
-                        <td>
+                        <td class="text-center"><?= htmlspecialchars($req['id']) ?></td>
+                        <td class="text-center"><?= htmlspecialchars($req['numero']) ?></td>
+                        <td class="text-center">
                             <?php if ($req['foto']): ?>
                                 <img src="../uploads/<?= htmlspecialchars($req['foto']) ?>" alt="Foto da Requisição" style="width: 100px; height: auto;">
                             <?php else: ?>
                                 N/A
                             <?php endif; ?>
                         </td>
-                        <td>
+                        <td class="text-center">
                             <?php
-                                $dataHora = new DateTime($req['data_hora']);
-                                echo htmlspecialchars($dataHora->format("d/m/Y H:i"));
+                            $dataHora = new DateTime($req['data_hora']);
+                            echo htmlspecialchars($dataHora->format("d/m/Y H:i"));
                             ?>
                         </td>
-                        <td><?= htmlspecialchars($req['entregador']) ?></td>
+                        <td class="text-center"><?= htmlspecialchars($req['entregador']) ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
 </div>
-<!-- Estilos de CSS para Melhorar a Aparência da Tabela -->
 <style>
-    /* Cabeçalho da Tabela */
-    .table thead {
-        background-color: #52b1a9;
-        /* Fundo do cabeçalho */
-        color: white;
-        /* Cor do texto do cabeçalho */
-        font-weight: bold;
-    }
     /* Bordas arredondadas */
-    .table {
+    .custom-table {
         border-radius: 8px;
         overflow: hidden;
     }
@@ -69,19 +60,19 @@ include '../includes/navbar.php';
         background-color: #e3f2fd;
         /* Cor de fundo ao passar o mouse */
     }
-    /* Estilos para as Células */
-    .table td,
-    .table th {
+    /* Centralização das Células */
+    .custom-table td,
+    .custom-table th {
         padding: 16px;
-        /* Aumenta o espaçamento das células */
         vertical-align: middle;
+        text-align: center;
+        /* Centraliza o conteúdo */
     }
     /* Ajuste da Imagem */
-    .table img {
+    .custom-table img {
         border-radius: 8px;
         border: 1px solid #ddd;
         padding: 2px;
     }
 </style>
-
 <?php include '../includes/footer.php'; ?>
