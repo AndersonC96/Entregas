@@ -1,15 +1,15 @@
 <?php
-    session_start();
-    include '../includes/db.php';
-    // Verifica se o usuário está logado
-    if (!isset($_SESSION['user'])) {
-        header('Location: ../index.php');
-        exit;
-    }
-    $stmt = $pdo->query("SELECT * FROM requisicoes ORDER BY data_hora DESC");
-    $requisicoes = $stmt->fetchAll();
-    include '../includes/header.php';
-    include '../includes/navbar.php';
+session_start();
+include '../includes/db.php';
+// Verifica se o usuário está logado
+if (!isset($_SESSION['user'])) {
+    header('Location: ../index.php');
+    exit;
+}
+$stmt = $pdo->query("SELECT * FROM requisicoes ORDER BY data_hora DESC");
+$requisicoes = $stmt->fetchAll();
+include '../includes/header.php';
+include '../includes/navbar.php';
 ?>
 <div class="container mt-4">
     <h2 class="text-center mb-4" style="font-weight: bold; color: #333;">Requisições Registradas</h2>
@@ -18,7 +18,7 @@
             <thead style="background-color: #52b1a9; color: white;">
                 <tr>
                     <th>ID</th>
-                    <th>Número</th>
+                    <th>Req.</th>
                     <th>Foto</th>
                     <th>Data e Hora</th>
                     <th>Entregador</th>
@@ -36,7 +36,12 @@
                                 N/A
                             <?php endif; ?>
                         </td>
-                        <td><?= htmlspecialchars($req['data_hora']) ?></td>
+                        <td>
+                            <?php
+                                $dataHora = new DateTime($req['data_hora']);
+                                echo htmlspecialchars($dataHora->format("d/m/Y H:i"));
+                            ?>
+                        </td>
                         <td><?= htmlspecialchars($req['entregador']) ?></td>
                     </tr>
                 <?php endforeach; ?>
@@ -78,4 +83,5 @@
         padding: 2px;
     }
 </style>
+
 <?php include '../includes/footer.php'; ?>
