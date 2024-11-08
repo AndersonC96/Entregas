@@ -27,22 +27,22 @@
             <tbody>
                 <?php foreach ($requisicoes as $req): ?>
                     <tr>
-                        <td class="text-center"><?= htmlspecialchars($req['id']) ?></td>
-                        <td class="text-center"><?= htmlspecialchars($req['numero']) ?></td>
-                        <td class="text-center">
+                        <td><?= htmlspecialchars($req['id']) ?></td>
+                        <td><?= htmlspecialchars($req['numero']) ?></td>
+                        <td>
                             <?php if ($req['foto']): ?>
                                 <img src="../uploads/<?= htmlspecialchars($req['foto']) ?>" alt="Foto da Requisição" style="width: 100px; height: auto;">
                             <?php else: ?>
                                 N/A
                             <?php endif; ?>
                         </td>
-                        <td class="text-center">
+                        <td>
                             <?php
                             $dataHora = new DateTime($req['data_hora']);
                             echo htmlspecialchars($dataHora->format("d/m/Y H:i"));
                             ?>
                         </td>
-                        <td class="text-center"><?= htmlspecialchars($req['entregador']) ?></td>
+                        <td><?= htmlspecialchars($req['entregador']) ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -58,7 +58,6 @@
     /* Linha de hover */
     .table-hover tbody tr:hover {
         background-color: #e3f2fd;
-        /* Cor de fundo ao passar o mouse */
     }
     /* Centralização das Células */
     .custom-table td,
@@ -66,13 +65,41 @@
         padding: 16px;
         vertical-align: middle;
         text-align: center;
-        /* Centraliza o conteúdo */
     }
     /* Ajuste da Imagem */
     .custom-table img {
         border-radius: 8px;
         border: 1px solid #ddd;
         padding: 2px;
+    }
+    /* Estilo para a exibição mobile */
+    @media (max-width: 768px) {
+        .custom-table thead {
+            display: none;
+        }
+        .custom-table tbody tr {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .custom-table tbody tr td {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        .custom-table tbody tr td:last-child {
+            border-bottom: none;
+        }
+        .custom-table tbody tr td:before {
+            content: attr(data-label);
+            font-weight: bold;
+            color: #52b1a9;
+            flex: 1;
+        }
     }
 </style>
 <?php include '../includes/footer.php'; ?>
