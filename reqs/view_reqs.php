@@ -6,13 +6,26 @@
         header('Location: ../index.php');
         exit;
     }
-    $stmt = $pdo->query("SELECT * FROM requisicoes ORDER BY data_hora DESC");
+    // Captura o termo de busca, se existir
+    $searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
+    // Modifica a consulta para incluir o termo de busca
+    if ($searchTerm) {
+        $stmt = $pdo->prepare("SELECT * FROM requisicoes WHERE numero LIKE :search OR entregador LIKE :search ORDER BY data_hora DESC");
+        $stmt->execute(['search' => '%' . $searchTerm . '%']);
+    } else {
+        $stmt = $pdo->query("SELECT * FROM requisicoes ORDER BY data_hora DESC");
+    }
     $requisicoes = $stmt->fetchAll();
     include '../includes/header.php';
     include '../includes/navbar.php';
 ?>
 <div class="container mt-4">
     <h2 class="text-center mb-4" style="font-weight: bold; color: #333;">Requisições Registradas</h2>
+    <!-- Campo de busca -->
+    <form method="GET" action="" class="mb-4 d-flex justify-content-center">
+        <input type="text" name="search" class="form-control w-50" placeholder="Buscar por número ou entregador" value="<?= htmlspecialchars($searchTerm) ?>">
+        <button type="submit" class="btn btn-primary ms-2">Buscar</button>
+    </form>
     <div class="table-responsive">
         <table class="table table-hover align-middle table-bordered custom-table" style="border-radius: 8px; overflow: hidden; background-color: #f8f9fa;">
             <thead class="desktop-header">
@@ -25,26 +38,32 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($requisicoes as $req): ?>
-                    <tr class="card-row">
-                        <td data-label="ID"><?= htmlspecialchars($req['id']) ?></td>
-                        <td data-label="Requisição"><?= htmlspecialchars($req['numero']) ?></td>
-                        <td data-label="Foto">
-                            <?php if ($req['foto']): ?>
-                                <img src="../uploads/<?= htmlspecialchars($req['foto']) ?>" alt="Foto da Requisição" style="width: 100px; height: auto;">
-                            <?php else: ?>
-                                N/A
-                            <?php endif; ?>
-                        </td>
-                        <td data-label="Data e Hora">
-                            <?php
-                            $dataHora = new DateTime($req['data_hora']);
-                            echo htmlspecialchars($dataHora->format("d/m/Y H:i"));
-                            ?>
-                        </td>
-                        <td data-label="Entregador"><?= htmlspecialchars($req['entregador']) ?></td>
+                <?php if (count($requisicoes) > 0): ?>
+                    <?php foreach ($requisicoes as $req): ?>
+                        <tr class="card-row">
+                            <td data-label="ID"><?= htmlspecialchars($req['id']) ?></td>
+                            <td data-label="Requisição"><?= htmlspecialchars($req['numero']) ?></td>
+                            <td data-label="Foto">
+                                <?php if ($req['foto']): ?>
+                                    <img src="../uploads/<?= htmlspecialchars($req['foto']) ?>" alt="Foto da Requisição" style="width: 100px; height: auto;">
+                                <?php else: ?>
+                                    N/A
+                                <?php endif; ?>
+                            </td>
+                            <td data-label="Data e Hora">
+                                <?php
+                                $dataHora = new DateTime($req['data_hora']);
+                                echo htmlspecialchars($dataHora->format("d/m/Y H:i"));
+                                ?>
+                            </td>
+                            <td data-label="Entregador"><?= htmlspecialchars($req['entregador']) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="5" class="text-center">Nenhuma requisição encontrada.</td>
                     </tr>
-                <?php endforeach; ?>
+                <?php endif; ?>
             </tbody>
         </table>
     </div>
@@ -76,7 +95,6 @@
     @media (max-width: 768px) {
         .desktop-header {
             display: none;
-            /* Oculta o cabeçalho na versão mobile */
         }
         .custom-table tbody tr.card-row {
             display: flex;
