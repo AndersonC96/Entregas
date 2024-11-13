@@ -11,7 +11,7 @@
 ?>
 <div class="container mt-5">
     <h2 class="text-center mb-4">Gerar Relatório de Requisições</h2>
-    <form action="report.php" method="GET" class="p-4" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <form action="process_report.php" method="GET" class="p-4" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
         <div class="mb-3">
             <label for="data_inicio" class="form-label">Data Início</label>
             <input type="date" class="form-control" id="data_inicio" name="data_inicio" value="">
