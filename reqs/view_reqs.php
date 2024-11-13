@@ -37,64 +37,78 @@
     include '../includes/header.php';
     include '../includes/navbar.php';
 ?>
-<div class="container mt-4">
-    <h2 class="text-center mb-4" style="font-weight: bold; color: #333;">Requisições Registradas</h2>
-    <!-- Campo de busca -->
-    <form method="GET" action="" class="mb-4 d-flex justify-content-center">
-        <input type="text" name="search" class="form-control w-50 rounded-pill px-4" placeholder="Buscar por número ou entregador" value="<?= htmlspecialchars($searchTerm) ?>">
-        <button type="submit" class="btn ms-2" style="background-color: #52b1a9; color: white; border-radius: 50px;">Buscar</button>
-    </form>
-    <div class="table-responsive">
-        <table class="table table-hover align-middle table-bordered custom-table" style="border-radius: 8px; overflow: hidden; background-color: #f8f9fa;">
-            <thead class="desktop-header">
-                <tr>
-                    <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">ID</th>
-                    <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Requisição</th>
-                    <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Foto</th>
-                    <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Data e Hora</th>
-                    <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Entregador</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (count($requisicoes) > 0): ?>
-                    <?php foreach ($requisicoes as $req): ?>
-                        <tr class="card-row">
-                            <td data-label="ID"><?= htmlspecialchars($req['id']) ?></td>
-                            <td data-label="Requisição"><?= htmlspecialchars($req['numero']) ?></td>
-                            <td data-label="Foto">
-                                <?php if ($req['foto']): ?>
-                                    <img src="../uploads/<?= htmlspecialchars($req['foto']) ?>" alt="Foto da Requisição" style="width: 100px; height: auto;">
-                                <?php else: ?>
-                                    N/A
-                                <?php endif; ?>
-                            </td>
-                            <td data-label="Data e Hora">
-                                <?php
-                                $dataHora = new DateTime($req['data_hora']);
-                                echo htmlspecialchars($dataHora->format("d/m/Y H:i"));
-                                ?>
-                            </td>
-                            <td data-label="Entregador"><?= htmlspecialchars($req['entregador']) ?></td>
+<div class="d-flex flex-column min-vh-100">
+    <main class="flex-grow-1">
+        <div class="container mt-4">
+            <h2 class="text-center mb-4" style="font-weight: bold; color: #333;">Requisições Registradas</h2>
+            <!-- Campo de busca -->
+            <form method="GET" action="" class="mb-4 d-flex justify-content-center">
+                <input type="text" name="search" class="form-control w-50 rounded-pill px-4" placeholder="Buscar por número ou entregador" value="<?= htmlspecialchars($searchTerm) ?>">
+                <button type="submit" class="btn ms-2" style="background-color: #52b1a9; color: white; border-radius: 50px;">Buscar</button>
+            </form>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle table-bordered custom-table" style="border-radius: 8px; overflow: hidden; background-color: #f8f9fa;">
+                    <thead class="desktop-header">
+                        <tr>
+                            <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">ID</th>
+                            <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Requisição</th>
+                            <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Foto</th>
+                            <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Data e Hora</th>
+                            <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Entregador</th>
                         </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td colspan="5" class="text-center">Nenhuma requisição encontrada.</td>
-                    </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
-    </div>
-    <!-- Paginação -->
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center mt-4">
-            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                <li class="page-item <?= $i === $page ? 'active' : '' ?>">
-                    <a class="page-link" href="?page=<?= $i ?>&search=<?= htmlspecialchars($searchTerm) ?>"><?= $i ?></a>
-                </li>
-            <?php endfor; ?>
-        </ul>
-    </nav>
+                    </thead>
+                    <tbody>
+                        <?php if (count($requisicoes) > 0): ?>
+                            <?php foreach ($requisicoes as $req): ?>
+                                <tr class="card-row">
+                                    <td data-label="ID"><?= htmlspecialchars($req['id']) ?></td>
+                                    <td data-label="Requisição"><?= htmlspecialchars($req['numero']) ?></td>
+                                    <td data-label="Foto">
+                                        <?php if ($req['foto']): ?>
+                                            <img src="../uploads/<?= htmlspecialchars($req['foto']) ?>" alt="Foto da Requisição" style="width: 100px; height: auto;">
+                                        <?php else: ?>
+                                            N/A
+                                        <?php endif; ?>
+                                    </td>
+                                    <td data-label="Data e Hora">
+                                        <?php
+                                        $dataHora = new DateTime($req['data_hora']);
+                                        echo htmlspecialchars($dataHora->format("d/m/Y H:i"));
+                                        ?>
+                                    </td>
+                                    <td data-label="Entregador"><?= htmlspecialchars($req['entregador']) ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="5" class="text-center">Nenhuma requisição encontrada.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Paginação -->
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center mt-4">
+                    <!-- Botão Anterior -->
+                    <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>">
+                        <a class="page-link" href="?page=<?= $page - 1 ?>&search=<?= htmlspecialchars($searchTerm) ?>" style="color: #52b1a9;">Anterior</a>
+                    </li>
+                    <!-- Links para as páginas -->
+                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                        <li class="page-item <?= $i === $page ? 'active' : '' ?>">
+                            <a class="page-link" href="?page=<?= $i ?>&search=<?= htmlspecialchars($searchTerm) ?>" style="<?= $i === $page ? 'background-color: #52b1a9; color: white;' : 'color: #52b1a9;' ?>"><?= $i ?></a>
+                        </li>
+                    <?php endfor; ?>
+                    <!-- Botão Próximo -->
+                    <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>">
+                        <a class="page-link" href="?page=<?= $page + 1 ?>&search=<?= htmlspecialchars($searchTerm) ?>" style="color: #52b1a9;">Próximo</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </main>
+    <?php include '../includes/footer.php'; ?>
 </div>
 <style>
     /* Estilos para o campo de busca */
@@ -162,5 +176,10 @@
             margin-right: 10px;
         }
     }
+    /* Estilo para garantir que o rodapé fique fixo no final */
+    .d-flex.flex-column.min-vh-100 {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
 </style>
-<?php include '../includes/footer.php'; ?>
