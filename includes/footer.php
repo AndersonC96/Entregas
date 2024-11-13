@@ -1,3 +1,4 @@
+        <br>
         <footer class="footer text-end p-2" style="width: 100%; position: fixed; bottom: 0; right: 0; background-color: #f2f6fa;">
             <span style="font-size: 14px; color: #6c757d;">&copy; <?= date("Y") ?> Simple Pharma</span>
         </footer>
