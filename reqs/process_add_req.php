@@ -6,35 +6,23 @@
         header('Location: ../index.php');
         exit;
     }
-    // Verifica se o formulário foi enviado
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Captura os dados do formulário
-        $numero = $_POST['numero'];
-        $entregador = $_SESSION['user']['nome']; // Pega o nome do usuário logado
-        $dataHora = date('Y-m-d H:i:s'); // Data e hora atuais
-        // Processa o upload da foto, se fornecida
-        $foto = null;
-        if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-            $extensao = pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION);
-            $nomeArquivo = uniqid() . '.' . $extensao;
-            $destino = "../uploads/$nomeArquivo";
-            // Move o arquivo para a pasta de uploads
-            if (move_uploaded_file($_FILES['foto']['tmp_name'], $destino)) {
-                $foto = $nomeArquivo;
-            } else {
-                $_SESSION['error'] = 'Erro ao fazer upload da foto.';
-                header('Location: add_req.php');
-                exit;
-            }
-        }
-        // Insere a nova requisição no banco de dados
-        $stmt = $pdo->prepare("INSERT INTO requisicoes (numero, foto, data_hora, entregador) VALUES (?, ?, ?, ?)");
-        if ($stmt->execute([$numero, $foto, $dataHora, $entregador])) {
-            $_SESSION['success'] = 'Requisição adicionada com sucesso!';
-        } else {
-            $_SESSION['error'] = 'Erro ao adicionar a requisição.';
-        }
+    // Define o fuso horário para garantir que a hora seja a correta
+    date_default_timezone_set('America/Sao_Paulo');
+    // Captura os dados do formulário
+    $numero = $_POST['numero'];
+    $entregador = $_SESSION['user']['nome'];
+    $dataHora = date("Y-m-d H:i:s"); // Hora atual correta
+    $foto = $_FILES['foto'];
+    // Processo de upload da foto
+    $fotoNome = null;
+    if ($foto && $foto['tmp_name']) {
+        $ext = pathinfo($foto['name'], PATHINFO_EXTENSION);
+        $fotoNome = uniqid() . '.' . $ext;
+        move_uploaded_file($foto['tmp_name'], "../uploads/" . $fotoNome);
     }
-    // Redireciona de volta para a página de adição de requisição ou outra página de sua escolha
+    // Insere a requisição no banco de dados
+    $stmt = $pdo->prepare("INSERT INTO requisicoes (numero, data_hora, entregador, foto) VALUES (?, ?, ?, ?)");
+    $stmt->execute([$numero, $dataHora, $entregador, $fotoNome]);
+    // Redireciona para a página de visualização de requisições
     header('Location: view_reqs.php');
     exit;
