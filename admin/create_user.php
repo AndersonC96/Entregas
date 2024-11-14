@@ -8,9 +8,9 @@
     }
     // Processa o formulário de criação de usuário
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $nome = $_POST['nome'];
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+        $nome = trim($_POST['nome']);
+        $username = trim($_POST['username']);
+        $password = trim($_POST['password']);
         // Verifica se o nome de usuário já existe
         $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE username = ?");
         $stmt->execute([$username]);
@@ -29,22 +29,48 @@
     include '../includes/header.php';
     include '../includes/navbar.php';
 ?>
-<h2>Criar Novo Usuário</h2>
-<form method="POST" action="">
-    <div class="mb-3">
-        <label for="nome" class="form-label">Nome</label>
-        <input type="text" class="form-control" id="nome" name="nome" required>
+<div class="container mt-5">
+    <div class="col-md-6 mx-auto">
+        <div class="card p-4" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <h3 class="text-center mb-4" style="font-weight: bold; color: #333;">Criar Novo Usuário</h3>
+            <?php if (isset($error)): ?>
+                <div class="alert alert-danger" role="alert"><?= $error ?></div>
+            <?php endif; ?>
+            <?php if (isset($success)): ?>
+                <div class="alert alert-success" role="alert"><?= $success ?></div>
+            <?php endif; ?>
+            <form method="POST" action="">
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="nome" name="nome" required style="background-color: #f5f5f5; border: none; color: #333;">
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Nome de Usuário</label>
+                    <input type="text" class="form-control" id="username" name="username" required style="background-color: #f5f5f5; border: none; color: #333;">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Senha</label>
+                    <input type="password" class="form-control" id="password" name="password" required style="background-color: #f5f5f5; border: none; color: #333;">
+                </div>
+                <button type="submit" class="btn w-100" style="background-color: #52b1a9; color: white; border-radius: 8px;">Criar Usuário</button>
+            </form>
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="username" class="form-label">Nome de Usuário</label>
-        <input type="text" class="form-control" id="username" name="username" required>
-    </div>
-    <div class="mb-3">
-        <label for="password" class="form-label">Senha</label>
-        <input type="password" class="form-control" id="password" name="password" required>
-    </div>
-    <button type="submit" class="btn btn-primary">Criar Usuário</button>
-    <?php if (isset($error)) echo "<p class='text-danger'>$error</p>"; ?>
-    <?php if (isset($success)) echo "<p class='text-success'>$success</p>"; ?>
-</form>
+</div>
+<style>
+    /* Estilo do campo de formulário */
+    .form-control {
+        border-radius: 8px;
+        padding: 10px;
+    }
+    /* Botão de submissão */
+    .btn {
+        font-weight: bold;
+    }
+    /* Estilo do card */
+    .card {
+        background-color: #ffffff;
+        border: none;
+    }
+</style>
 <?php include '../includes/footer.php'; ?>
