@@ -31,8 +31,8 @@
 ?>
 <div class="container mt-5">
     <div class="col-md-6 mx-auto">
+    <h2 class="text-center mb-4">Criar Novo Usuário</h2>
         <div class="card p-4" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            <h3 class="text-center mb-4" style="font-weight: bold; color: #333;">Criar Novo Usuário</h3>
             <?php if (isset($error)): ?>
                 <div class="alert alert-danger" role="alert"><?= $error ?></div>
             <?php endif; ?>
@@ -41,18 +41,18 @@
             <?php endif; ?>
             <form method="POST" action="">
                 <div class="mb-3">
-                    <label for="nome" class="form-label">Nome</label>
+                    <label for="nome" class="form-label"><b>Nome</b></label>
                     <input type="text" class="form-control" id="nome" name="nome" required style="background-color: #f5f5f5; border: none; color: #333;">
                 </div>
                 <div class="mb-3">
-                    <label for="username" class="form-label">Nome de Usuário</label>
+                    <label for="username" class="form-label"><b>Nome de Usuário</b></label>
                     <input type="text" class="form-control" id="username" name="username" required style="background-color: #f5f5f5; border: none; color: #333;">
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">Senha</label>
+                    <label for="password" class="form-label"><b>Senha</b></label>
                     <input type="password" class="form-control" id="password" name="password" required style="background-color: #f5f5f5; border: none; color: #333;">
                 </div>
-                <button type="submit" class="btn w-100" style="background-color: #52b1a9; color: white; border-radius: 8px;">Criar Usuário</button>
+                <button type="submit" class="btn w-100" style="background-color: #52b1a9; color: white; border-radius: 8px;"><b>Criar Usuário</b></button>
             </form>
         </div>
     </div>
