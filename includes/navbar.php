@@ -37,7 +37,7 @@
                         <ul class="dropdown-menu" aria-labelledby="gerenciarUsuariosDropdown">
                             <li><a class="dropdown-item" href="../admin/create_user.php"><i class="fas fa-user-plus"></i> Adicionar Usuário</a></li>
                             <li><a class="dropdown-item" href="../admin/delete_user.php"><i class="fas fa-user-minus"></i> Remover Usuário</a></li>
-                            <li><a class="dropdown-item" href="admin/view_users.php"><i class="fas fa-users"></i> Visualizar Usuários</a></li>
+                            <li><a class="dropdown-item" href="../admin/view_users.php"><i class="fas fa-users"></i> Visualizar Usuários</a></li>
                         </ul>
                     </li>
                 <?php endif; ?>
