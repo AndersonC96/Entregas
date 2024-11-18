@@ -47,8 +47,9 @@
                     <img src="https://e7.pngegg.com/pngimages/753/432/png-clipart-user-profile-2018-in-sight-user-conference-expo-business-default-business-angle-service-thumbnail.png" alt="perfil" class="rounded-circle me-2" width="40" height="40">
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i>Conta</a></li>
-                    <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Configurações</a></li>
+                    <!--<li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i>Conta</a></li>-->
+                    <!--<li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Configurações</a></li>-->
+                    <li><a class="dropdown-item" href="../admin/pass_change.php"><i class="fas fa-cog me-2"></i>Alterar senha</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
