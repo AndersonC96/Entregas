@@ -19,8 +19,6 @@
 ?>
 <div class="d-flex justify-content-center align-items-center vh-100">
     <div class="login-container">
-        <!--<h3 style="font-family: Arial, sans-serif; color: #009688;">SIMPLE PHARMA</h3>
-        <p style="font-size: 12px; color: #6c757d;">MANIPULAÇÃO</p>-->
         <img src="https://static.wixstatic.com/media/6e2603_a1df562998b54aa79d9bedb9add87265~mv2.png/v1/crop/x_0,y_4,w_123,h_73/fill/w_120,h_71,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/logo.png" alt="Sistema de Entrega">
         <form method="POST" action="">
             <br>
