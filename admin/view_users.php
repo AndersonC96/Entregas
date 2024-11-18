@@ -21,7 +21,7 @@
 ?>
 <div class="container mt-5">
     <div class="col-md-10 mx-auto">
-        <h2 class="text-center mb-4" style="font-weight: bold; color: #333;">Visualizar Usuário</h2>
+        <h2 class="text-center mb-4" style="font-weight: bold; color: #333;">Visualizar Usuários</h2>
         <!-- Campo de busca -->
         <form method="GET" action="" class="mb-4 d-flex justify-content-center">
             <input type="text" name="search" class="form-control w-50 rounded-pill px-4" placeholder="Buscar por nome" value="<?= htmlspecialchars($searchTerm) ?>" style="background-color: #333; color: white;">
