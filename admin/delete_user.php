@@ -39,7 +39,7 @@
             <table class="table table-hover align-middle table-bordered custom-table" style="border-radius: 8px; overflow: hidden; background-color: #f8f9fa;">
                 <thead style="background-color: #52b1a9; color: white;">
                     <tr>
-                        <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">ID</th>
+                        <!--<th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">ID</th>-->
                         <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Nome</th>
                         <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Nome de Usuário</th>
                         <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Ações</th>
@@ -49,7 +49,7 @@
                     <?php if (count($users) > 0): ?>
                         <?php foreach ($users as $user): ?>
                             <tr>
-                                <td class="text-center"><?= htmlspecialchars($user['id']) ?></td>
+                                <!--<td class="text-center"><?= htmlspecialchars($user['id']) ?></td>-->
                                 <td class="text-center"><?= htmlspecialchars($user['nome']) ?></td>
                                 <td class="text-center"><?= htmlspecialchars($user['username']) ?></td>
                                 <td class="text-center">
