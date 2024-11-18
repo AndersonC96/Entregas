@@ -53,7 +53,8 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt me-2"></i>Sair</a></li>
+                    <li><a class="dropdown-item" href="../logout.php
+                    "><i class="fas fa-sign-out-alt me-2"></i>Sair</a></li>
                 </ul>
             </div>
         </div>
