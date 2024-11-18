@@ -50,7 +50,7 @@
                 <table class="table table-hover align-middle table-bordered custom-table" style="border-radius: 8px; overflow: hidden; background-color: #f8f9fa;">
                     <thead class="desktop-header">
                         <tr>
-                            <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">ID</th>
+                            <!--<th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">ID</th>-->
                             <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Requisição</th>
                             <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Foto</th>
                             <th style="background-color: #52b1a9 !important; color: white !important; text-align: center;">Data e Hora</th>
@@ -61,7 +61,7 @@
                         <?php if (count($requisicoes) > 0): ?>
                             <?php foreach ($requisicoes as $req): ?>
                                 <tr class="card-row">
-                                    <td data-label="ID"><?= htmlspecialchars($req['id']) ?></td>
+                                    <!--<td data-label="ID"><?= htmlspecialchars($req['id']) ?></td>-->
                                     <td data-label="Requisição"><?= htmlspecialchars($req['numero']) ?></td>
                                     <td data-label="Foto">
                                         <?php if ($req['foto']): ?>
