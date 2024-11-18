@@ -37,7 +37,7 @@
             <table class="table table-hover table-bordered" style="background-color: #f8f9fa; border-radius: 8px; overflow: hidden;">
                 <thead>
                     <tr style="background-color: #52b1a9; color: white; text-align: center;">
-                        <th>ID</th>
+                        <!--<th>ID</th>-->
                         <th>Nome</th>
                         <th>Nome de Usuário</th>
                     </tr>
@@ -46,7 +46,7 @@
                     <?php if (count($users) > 0): ?>
                         <?php foreach ($users as $user): ?>
                             <tr>
-                                <td class="text-center"><?= htmlspecialchars($user['id']) ?></td>
+                                <!--<td class="text-center"><?= htmlspecialchars($user['id']) ?></td>-->
                                 <td class="text-center"><?= htmlspecialchars($user['nome']) ?></td>
                                 <td class="text-center"><?= htmlspecialchars($user['username']) ?></td>
                             </tr>
