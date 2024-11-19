@@ -16,8 +16,11 @@
     // Processo de upload da foto
     $fotoNome = null;
     if ($foto && $foto['tmp_name']) {
+        // Formata a data e hora para o nome do arquivo
+        $dataHoraFormatada = date("d-m-Y_H-i-s");
         $ext = pathinfo($foto['name'], PATHINFO_EXTENSION);
-        $fotoNome = uniqid() . '.' . $ext;
+        // Nome do arquivo: Número da requisição + data/hora
+        $fotoNome = $numero . '_' . $dataHoraFormatada . '.' . $ext;
         move_uploaded_file($foto['tmp_name'], "../uploads/" . $fotoNome);
     }
     // Insere a requisição no banco de dados
